@@ -1,0 +1,9 @@
+{
+  "firebase": "shoppinglists19",
+  "public": "dist",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

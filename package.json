@@ -31,5 +31,8 @@
     "ember-export-application-global": "^1.0.1",
     "express": "^4.10.2",
     "glob": "^4.0.6"
+  },
+  "dependencies": {
+    "emberfire": "^1.3.1"
   }
 }

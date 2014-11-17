@@ -5,7 +5,7 @@ export default DS.Model.extend({
   price: DS.attr('number'),
   createdAt: DS.attr('date', {
     defaultValue: function() {
-      return Date.now();
+      return new Date();
     }
   }),
   buyer: DS.attr('string')

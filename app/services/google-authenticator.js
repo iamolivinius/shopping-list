@@ -12,7 +12,7 @@ export default Base.extend({
     });
   },
 
-  authenticate: function(options) {
+  authenticate: function() {
     return new Ember.RSVP.Promise(function(resolve, reject) {
       gapi.auth.authorize({
         client_id: '656566889618-ohsvt0qhdogb5cnv765av5lf2u4auu79.apps.googleusercontent.com',
@@ -41,7 +41,7 @@ export default Base.extend({
   },
 
   invalidate: function() {
-    return new Ember.RSVP.Promise(function(resolve, reject) {
+    return new Ember.RSVP.Promise(function(resolve) {
       resolve();
     });
   }

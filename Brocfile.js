@@ -1,6 +1,8 @@
 /* global require, module */
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var mergeTrees = require('broccoli-merge-trees');
+var pickFiles = require('broccoli-static-compiler');
 
 var app = new EmberApp();
 
@@ -19,5 +21,19 @@ var app = new EmberApp();
 
 app.import('bower_components/bootstrap/dist/css/bootstrap.css');
 app.import('bower_components/bootstrap/dist/js/bootstrap.js');
+var glyphiconsTree = pickFiles('bower_components/bootstrap/fonts', {
+  srcDir: '/',
+  files: ['glyphicons-halflings-regular.eot', 'glyphicons-halflings-regular.ttf', 'glyphicons-halflings-regular.svg', 'glyphicons-halflings-regular.woff'],
+  destDir: '/fonts'
+});
 
-module.exports = app.toTree();
+app.import('bower_components/fontawesome/css/font-awesome.css');
+var fontAwesomeTree = pickFiles('bower_components/fontawesome/fonts', {
+  srcDir: '/',
+  files: ['fontawesome-webfont.eot', 'fontawesome-webfont.ttf', 'fontawesome-webfont.svg', 'fontawesome-webfont.woff'],
+  destDir: '/fonts'
+});
+
+app.import('bower_components/momentjs/moment.js');
+
+module.exports = mergeTrees([app.toTree(), glyphiconsTree, fontAwesomeTree]);

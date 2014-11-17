@@ -3,7 +3,8 @@
     "document",
     "window",
     "-Promise",
-    "Firebase"
+    "Firebase",
+    "gapi"
   ],
   "browser" : true,
   "boss" : true,

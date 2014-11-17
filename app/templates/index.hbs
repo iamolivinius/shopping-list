@@ -1,0 +1,110 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Shopping List</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <p class="navbar-text">Signed in as <strong>{{session.user_name}}</strong></p>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">List</a></li>
+        <li><a href="#">Statistics</a></li>
+        {{#if session.isAuthenticated}}
+        <li><a href="#" {{ action 'invalidateSession' }}>Logout</a></li>
+        {{/if}}
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="bs-example">
+
+    <form {{action 'saveItem' on="submit"}}>
+      <div {{bind-attr class=":form-group validProductname:has-success validProductname:has-feedback"}}>
+        <label>Product Name:</label>
+        {{input value=productName class="form-control" type="text" placeholder="e.g. Coffee"}}
+        {{#if validProductname}}
+        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+        {{/if}}
+      </div>
+
+      {{#if alertProductname}}
+      <div class="alert alert-danger" role="alert">A product name must be at least 3 characters long.</div>
+       {{/if}}
+
+      <div {{bind-attr class=":form-group validPrice:has-success validPrice:has-feedback"}}>
+        <label>Price:</label>
+        <div class="input-group">
+          <span class="input-group-addon">€</span>
+          {{input value=price class="form-control" type="number" min="0" placeholder="0.00"}}
+          {{#if validPrice}}
+          <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+          {{/if}}
+        </div>
+      </div>
+
+      {{#if alertPrice}}
+      <div class="alert alert-danger" role="alert">Price must be greater than 0 and in dot notation (e.g. 2.99).</div>
+      {{/if}}
+
+      <button type="submit" {{bind-attr class=":btn :btn-primary validForm::disabled"}} {{action 'saveItem'}}>Save</button>
+      <button class="btn btn-default" {{action 'clearForm'}}>Discard</button>
+    </form>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="bs-example">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <colgroup>
+          <col class="col-xs-4">
+          <col class="col-xs-3">
+          <col class="col-xs-3">
+          <col class="col-xs-2">
+        </colgroup>
+        <tr>
+          <th>Product</th>
+          <th>Person</th>
+          <th>Date</th>
+          <th class="table-price-col">Price</th>
+        </tr>
+        {{#each item in model}}
+        <tr>
+          <td>{{item.productName}}</td>
+          <td>{{item.buyer}}</td>
+          <td>{{format-date item.createdAt}}</td>
+          <td class="table-price-col euro">{{format-price item.price}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <colgroup>
+          <col class="col-xs-4">
+          <col class="col-xs-3">
+          <col class="col-xs-3">
+          <col class="col-xs-2">
+        </colgroup>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Total:</th>
+          <th class="table-price-col euro">{{total}}</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -30,7 +30,7 @@
   <div class="bs-example">
 
     <form {{action 'saveItem' on="submit"}}>
-      <div {{bind-attr class=":form-group validProductname:has-success validProductname:has-feedback"}}>
+      <div class="form-group {{if validProductname "has-success"}} {{if validProductname "has-feedback"}}">
         <label>Product Name:</label>
         {{input value=productName class="form-control" type="text" placeholder="e.g. Coffee"}}
         {{#if validProductname}}
@@ -42,7 +42,7 @@
       <div class="alert alert-danger" role="alert">A product name must be at least 3 characters long.</div>
        {{/if}}
 
-      <div {{bind-attr class=":form-group validPrice:has-success validPrice:has-feedback"}}>
+      <div class="form-group {{if validPrice "has-success"}} {{if validProductname "has-feedback"}}">
         <label>Price:</label>
         <div class="input-group">
           <span class="input-group-addon">€</span>
@@ -57,7 +57,7 @@
       <div class="alert alert-danger" role="alert">Price must be greater than 0 and in dot notation (e.g. 2.99).</div>
       {{/if}}
 
-      <button type="submit" {{bind-attr class=":btn :btn-primary validForm::disabled"}} {{action 'saveItem'}}>Save</button>
+      <button type="submit" class="btn btn-primary {{unless validForm "disabled"}}" {{action 'saveItem'}}>Save</button>
       <button class="btn btn-default" {{action 'clearForm'}}>Discard</button>
     </form>
 

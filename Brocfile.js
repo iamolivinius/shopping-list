@@ -34,10 +34,4 @@ var fontAwesomeTree = pickFiles('bower_components/fontawesome/fonts', {
   destDir: '/fonts'
 });
 
-app.import('bower_components/momentjs/moment.js', {
-  exports: {
-    'moment': ['default']
-  }
-});
-
 module.exports = mergeTrees([app.toTree(), glyphiconsTree, fontAwesomeTree]);

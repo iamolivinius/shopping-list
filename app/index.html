@@ -17,11 +17,14 @@
     <link rel="stylesheet" href="assets/shopping-list.css">
 
     <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+    {{content-for 'head-footer'}}
   </head>
   <body>
     {{content-for 'body'}}
 
     <script src="assets/vendor.js"></script>
     <script src="assets/shopping-list.js"></script>
+
+    {{content-for 'body-footer'}}
   </body>
 </html>

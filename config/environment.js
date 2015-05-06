@@ -4,6 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'shopping-list',
     environment: environment,
+    firebase: 'https://shoppinglists19.firebaseio.com',
     baseURL: '/',
     locationType: 'auto',
     EmberENV: {
